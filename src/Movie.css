@@ -1,0 +1,95 @@
+.movie-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: left;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  width: 100%;
+  max-width: 300px;
+  position: relative;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-poster {
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+}
+
+.movie-details {
+  padding: 8px;
+}
+
+.movie-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.movie-title h2 {
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0;
+}
+
+.delete-icon {
+  cursor: pointer;
+  color: #888;
+  font-size: 20px;
+}
+
+.delete-icon:hover {
+  color: #f44336;
+}
+
+.like-dislike-icons {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.like-icon,
+.dislike-icon {
+  cursor: pointer;
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+.dislike-icon {
+  margin-left: 8px;
+}
+
+.like-icon:hover,
+.like-icon.active {
+  color: #4caf50;
+}
+
+.dislike-icon:hover,
+.dislike-icon.active {
+  color: #ff0000;
+}
+
+.likes-count,
+.dislikes-count {
+  margin-left: 4px;
+}
+
+.gauge {
+  background-color: #ddd;
+  border-radius: 4px;
+  height: 8px;
+  width: 100%;
+  margin-top: 8px;
+  position: relative;
+}
+
+.likes-bar {
+  background-color: #4caf50;
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease-in-out;
+}
