@@ -1,49 +1,54 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import "./Movie.css";
 import { FaThumbsUp, FaThumbsDown, FaTrash } from "react-icons/fa";
 import { FaRegThumbsUp, FaRegThumbsDown } from "react-icons/fa";
+import {
+  deleteMovie,
+  likeMovie,
+  unlikeMovie,
+  dislikeMovie,
+  undislikeMovie,
+} from "./store/moviesSlice";
 
 const Movie = ({ movie }) => {
   const { id, title, category, likes, dislikes, poster } = movie;
-  const [likeCount, setLikeCount] = useState(likes);
-  const [dislikeCount, setDislikeCount] = useState(dislikes);
-  const total = likeCount + dislikeCount;
-  const likePercentage = total === 0 ? 0 : (likeCount / total) * 100;
-
   const [likeActive, setLikeActive] = useState(false);
   const [dislikeActive, setDislikeActive] = useState(false);
   const [deleteHovered, setDeleteHovered] = useState(false);
 
+  const dispatch = useDispatch();
+
   const handleLike = () => {
     if (!likeActive) {
-      setLikeCount(likeCount + 1);
+      dispatch(likeMovie(id));
       setLikeActive(true);
       if (dislikeActive) {
-        setDislikeCount(dislikeCount - 1);
+        dispatch(undislikeMovie(id));
         setDislikeActive(false);
       }
     } else {
-      setLikeCount(likeCount - 1);
+      dispatch(unlikeMovie(id));
       setLikeActive(false);
     }
   };
 
   const handleDislike = () => {
     if (!dislikeActive) {
-      setDislikeCount(dislikeCount + 1);
+      dispatch(dislikeMovie(id));
       setDislikeActive(true);
       if (likeActive) {
-        setLikeCount(likeCount - 1);
+        dispatch(unlikeMovie(id));
         setLikeActive(false);
       }
     } else {
-      setDislikeCount(dislikeCount - 1);
+      dispatch(undislikeMovie(id));
       setDislikeActive(false);
     }
   };
 
   const handleDelete = () => {
-    alert(`Film "${title}" supprimé.`);
+    dispatch(deleteMovie(id));
   };
 
   return (
@@ -68,20 +73,24 @@ const Movie = ({ movie }) => {
             onClick={handleLike}
           >
             {likeActive ? <FaThumbsUp /> : <FaRegThumbsUp />}
-            <span className="likes-count">{likeCount}</span>
+            <span className="likes-count">{likes}</span>
           </span>
           <span
             className={`dislike-icon ${dislikeActive ? "active" : ""}`}
             onClick={handleDislike}
           >
             {dislikeActive ? <FaThumbsDown /> : <FaRegThumbsDown />}
-            <span className="dislikes-count">{dislikeCount}</span>
+            <span className="dislikes-count">{dislikes}</span>
           </span>
         </div>
         <div className="gauge">
           <div
             className="likes-bar"
-            style={{ width: `${likePercentage}%` }}
+            style={{
+              width: `${
+                likes + dislikes === 0 ? 0 : (likes / (likes + dislikes)) * 100
+              }%`,
+            }}
           ></div>
         </div>
       </div>
