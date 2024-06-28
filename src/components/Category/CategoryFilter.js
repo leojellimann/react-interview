@@ -1,7 +1,7 @@
 import React from "react";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
-import { setCategoryFilter } from "./store/moviesSlice";
+import { setCategoryFilter } from "../../store/moviesSlice";
 
 const CategoryFilter = () => {
   const dispatch = useDispatch();

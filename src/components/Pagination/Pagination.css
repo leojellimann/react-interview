@@ -1,0 +1,76 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.page-arrow {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  color: #888;
+  padding: 10px;
+  margin: 0 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+}
+
+.page-arrow:disabled {
+  color: #ddd;
+  cursor: not-allowed;
+}
+
+.page-arrow:not(:disabled):hover {
+  color: #2684ff;
+  background-color: #f9f9f9;
+}
+
+.page-numbers {
+  display: flex;
+  align-items: center;
+}
+
+.page-number {
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  padding: 8px 12px;
+  margin: 0 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.page-number.active {
+  background-color: #2684ff;
+  color: white;
+  border: 1px solid #2684ff;
+  padding: 8px 12px;
+}
+
+.page-number:hover {
+  background-color: #f0f0f0;
+}
+
+.movies-per-page {
+  display: flex;
+  align-items: center;
+  margin-left: 16px;
+}
+
+.movies-per-page label {
+  margin-right: 8px;
+}
+
+.movies-per-page-select {
+  padding: 4px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}

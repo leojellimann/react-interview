@@ -2,12 +2,12 @@
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 16px;
+  overflow: hidden;
   text-align: left;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
   width: 100%;
-  max-width: 300px;
+  max-width: 500px;
   position: relative;
 }
 
@@ -17,11 +17,12 @@
 
 .movie-poster {
   width: 100%;
-  border-radius: 8px 8px 0 0;
+  height: auto;
+  display: block;
 }
 
 .movie-details {
-  padding: 8px;
+  padding: 8px 16px 16px 16px;
 }
 
 .movie-title {
@@ -65,7 +66,7 @@
 
 .like-icon:hover,
 .like-icon.active {
-  color: #4caf50;
+  color: #2684ff;
 }
 
 .dislike-icon:hover,
@@ -88,7 +89,7 @@
 }
 
 .likes-bar {
-  background-color: #4caf50;
+  background-color: #2684ff;
   height: 100%;
   border-radius: 4px;
   transition: width 0.3s ease-in-out;

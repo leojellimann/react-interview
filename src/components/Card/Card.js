@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import "./Movie.css";
+import "./Card.css";
 import { FaThumbsUp, FaThumbsDown, FaTrash } from "react-icons/fa";
 import { FaRegThumbsUp, FaRegThumbsDown } from "react-icons/fa";
 import {
@@ -9,9 +9,9 @@ import {
   unlikeMovie,
   dislikeMovie,
   undislikeMovie,
-} from "./store/moviesSlice";
+} from "../../store/moviesSlice";
 
-const Movie = ({ movie }) => {
+const Card = ({ movie }) => {
   const { id, title, category, likes, dislikes, poster } = movie;
   const [likeActive, setLikeActive] = useState(false);
   const [dislikeActive, setDislikeActive] = useState(false);
@@ -66,7 +66,7 @@ const Movie = ({ movie }) => {
             <FaTrash style={{ color: deleteHovered ? "#f44336" : "#888" }} />
           </span>
         </div>
-        <p>Category: {category}</p>
+        <p>Film de type : {category}</p>
         <div className="like-dislike-icons">
           <span
             className={`like-icon ${likeActive ? "active" : ""}`}
@@ -98,4 +98,4 @@ const Movie = ({ movie }) => {
   );
 };
 
-export default Movie;
+export default Card;

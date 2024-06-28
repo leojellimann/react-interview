@@ -2,6 +2,17 @@
   padding: 16px;
 }
 
+.title {
+  display: flex;
+  align-items: center;
+  font-size: 2em;
+}
+
+.logo {
+  height: 1em;
+  margin-right: 10px;
+}
+
 .movies-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -14,12 +25,12 @@
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 16px;
+  padding: 0;
   text-align: left;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
   width: 100%;
-  max-width: 300px;
+  max-width: 400px;
 }
 
 .movie-card:hover {
@@ -32,7 +43,7 @@
 }
 
 .movie-details {
-  padding: 8px 0;
+  padding: 8px 16px 16px 16px;
 }
 
 .movie-details h2 {
@@ -40,23 +51,83 @@
   font-size: 18px;
 }
 
-.gauge {
-  background-color: #ddd;
-  border-radius: 4px;
-  height: 8px;
-  width: 100%;
-  margin-top: 8px;
-  position: relative;
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  padding: 16px 0;
+  border-top: 1px solid #ddd;
 }
 
-.likes-bar {
-  background-color: #4caf50;
-  height: 100%;
-  border-radius: 4px;
+.page-arrow {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  color: #888;
+  padding: 10px;
+  margin: 0 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
 }
 
-.category-select {
-  margin-bottom: 16px;
+.page-arrow:disabled {
+  color: #ddd;
+  cursor: not-allowed;
+}
+
+.page-arrow:not(:disabled):hover {
+  color: #2684ff;
+  background-color: #f9f9f9;
+}
+
+.page-numbers {
+  display: flex;
+  align-items: center;
+}
+
+.page-number {
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  padding: 8px 12px;
+  margin: 0 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.page-number.active {
+  background-color: #2684ff;
+  color: white;
+  border: 1px solid #2684ff;
+  padding: 8px 12px;
+}
+
+.page-number:hover {
+  background-color: #f0f0f0;
+}
+
+.movies-per-page {
+  display: flex;
+  align-items: center;
+  margin-left: 16px;
+}
+
+.movies-per-page label {
+  margin-right: 8px;
+}
+
+.movies-per-page-select {
+  padding: 4px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
 @media (min-width: 1800px) {

@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchMovies } from "./store/moviesSlice";
-import Movie from "./Movie";
-import CategoryFilter from "./CategoryFilter";
-import Pagination from "./Pagination";
+import Card from "./components/Card/Card";
+import CategoryFilter from "./components/Category/CategoryFilter";
+import Pagination from "./components/Pagination/Pagination";
 import "./App.css";
+import logo from "./assets/icons/logo.svg";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -29,14 +30,17 @@ const App = () => {
 
   return (
     <div className="app">
-      <h1>Movies List</h1>
+      <h1 className="title">
+        <img src={logo} alt="Logo" className="logo" />
+        Liste de films de Jelli
+      </h1>
       <CategoryFilter />
-      <Pagination />
       <div className="movies-grid">
         {selectedMovies.map((movie) => (
-          <Movie key={movie.id} movie={movie} />
+          <Card key={movie.id} movie={movie} />
         ))}
       </div>
+      <Pagination />
     </div>
   );
 };
