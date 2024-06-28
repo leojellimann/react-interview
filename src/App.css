@@ -55,6 +55,10 @@
   border-radius: 4px;
 }
 
+.category-select {
+  margin-bottom: 16px;
+}
+
 @media (min-width: 1800px) {
   .movies-grid {
     grid-template-columns: repeat(5, 1fr);

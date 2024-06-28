@@ -12,10 +12,15 @@ const moviesSlice = createSlice({
     items: [],
     status: "idle",
     error: null,
+    categoryFilter: [],
+    moviesPerPage: 12,
+    currentPage: 1,
+    totalMovies: 0,
   },
   reducers: {
     deleteMovie: (state, action) => {
       state.items = state.items.filter((movie) => movie.id !== action.payload);
+      state.totalMovies -= 1;
     },
     likeMovie: (state, action) => {
       const movie = state.items.find((movie) => movie.id === action.payload);
@@ -41,6 +46,17 @@ const moviesSlice = createSlice({
         movie.dislikes -= 1;
       }
     },
+    setCategoryFilter: (state, action) => {
+      state.categoryFilter = action.payload;
+      state.currentPage = 1;
+    },
+    setMoviesPerPage: (state, action) => {
+      state.moviesPerPage = action.payload;
+      state.currentPage = 1;
+    },
+    setCurrentPage: (state, action) => {
+      state.currentPage = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -50,6 +66,7 @@ const moviesSlice = createSlice({
       .addCase(fetchMovies.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.items = action.payload;
+        state.totalMovies = action.payload.length;
       })
       .addCase(fetchMovies.rejected, (state, action) => {
         state.status = "failed";
@@ -64,6 +81,9 @@ export const {
   unlikeMovie,
   dislikeMovie,
   undislikeMovie,
+  setCategoryFilter,
+  setMoviesPerPage,
+  setCurrentPage,
 } = moviesSlice.actions;
 
 export default moviesSlice.reducer;

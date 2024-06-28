@@ -1,0 +1,47 @@
+.pagination {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.page-button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  margin: 0 4px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.page-button:disabled {
+  background-color: #888;
+  cursor: not-allowed;
+}
+
+.page-button:not(:disabled):hover {
+  background-color: #45a049;
+}
+
+.movies-per-page {
+  display: flex;
+  align-items: center;
+}
+
+.movies-per-page label {
+  margin-right: 8px;
+}
+
+.movies-per-page-select {
+  padding: 4px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}

@@ -1,35 +1,42 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchMovies } from "./store/moviesSlice";
 import Movie from "./Movie";
+import CategoryFilter from "./CategoryFilter";
+import Pagination from "./Pagination";
 import "./App.css";
 
 const App = () => {
   const dispatch = useDispatch();
-  const movies = useSelector((state) => state.movies.items);
-  const movieStatus = useSelector((state) => state.movies.status);
-  const error = useSelector((state) => state.movies.error);
+  const { items, moviesPerPage, currentPage, categoryFilter } = useSelector(
+    (state) => state.movies
+  );
 
   useEffect(() => {
-    if (movieStatus === "idle") {
-      dispatch(fetchMovies());
-    }
-  }, [movieStatus, dispatch]);
+    dispatch(fetchMovies());
+  }, [dispatch]);
 
-  let content;
+  const filteredMovies =
+    categoryFilter.length > 0
+      ? items.filter((movie) => categoryFilter.includes(movie.category))
+      : items;
 
-  if (movieStatus === "loading") {
-    content = <p>Loading...</p>;
-  } else if (movieStatus === "succeeded") {
-    content = movies.map((movie) => <Movie key={movie.id} movie={movie} />);
-  } else if (movieStatus === "failed") {
-    content = <p>{error}</p>;
-  }
+  const startIndex = (currentPage - 1) * moviesPerPage;
+  const selectedMovies = filteredMovies.slice(
+    startIndex,
+    startIndex + moviesPerPage
+  );
 
   return (
     <div className="app">
       <h1>Movies List</h1>
-      <div className="movies-grid">{content}</div>
+      <CategoryFilter />
+      <Pagination />
+      <div className="movies-grid">
+        {selectedMovies.map((movie) => (
+          <Movie key={movie.id} movie={movie} />
+        ))}
+      </div>
     </div>
   );
 };
